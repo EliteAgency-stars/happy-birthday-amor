@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fil">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Maligayang Kaarawan, Schanel! 💖</title>
+  <meta name="description" content="Isang espesyal na regalo para kay Schanel.">
+  <meta name="theme-color" content="#14071f">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+  <!-- Capas de fondo y efectos -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"></div>
+  <div id="floaters" class="floaters"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- ========== INTRO: la caja de regalo ========== -->
+  <div id="intro" class="intro">
+    <p class="intro-kicker">Para kay Schanel 💝</p>
+    <button id="giftBtn" class="gift" aria-label="Buksan ang regalo">
+      <span class="gift-glow"></span>
+      <span class="gift-lid"><span class="gift-bow"><i></i><i></i></span></span>
+      <span class="gift-box"></span>
+    </button>
+    <p class="intro-hint">May regalo ka! Pindutin mo 🎁</p>
+    <p class="intro-sound">🔊 Lakasan ang tunog</p>
+  </div>
+
+  <!-- Controles flotantes -->
+  <button id="musicBtn" class="music-btn" aria-label="Musika" aria-pressed="false" title="Musika">
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+    <span class="note">♪</span>
+  </button>
+  <div id="counter" class="counter" title="Mga lihim na mensahe">
+    💌 <span id="foundCount">0</span>/<span id="totalCount">0</span>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="balloons" aria-hidden="true">
+        <span class="balloon b1"></span><span class="balloon b2"></span><span class="balloon b3"></span>
+        <span class="balloon b4"></span><span class="balloon b5"></span><span class="balloon b6"></span>
+        <span class="balloon b7"></span>
+      </div>
+      <p class="hero-kicker">✨ Ngayon ay isang espesyal na araw ✨</p>
+      <h1 class="hero-title">
+        <span class="line1">Maligayang Kaarawan</span>
+        <span class="name" id="heroName" aria-label="Schanel">Schanel</span>
+      </h1>
+      <p class="hero-sub">Para sa pinakamagandang babae sa buong mundo 💖</p>
+      <p class="hero-hint">Pindutin ang mga lumulutang na puso para sa mga lihim na mensahe</p>
+      <a class="scroll-hint" href="#cake">Mag-scroll pababa <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <!-- ========== PASTEL ========== -->
+    <section class="cake-section reveal" id="cake">
+      <h2 class="section-title"><span class="gt">Mag-wish ka muna...</span> <span class="emo">🌠</span></h2>
+      <p class="section-sub">Pumikit, humiling, at pindutin ang mga kandila para hipan ang mga ito.</p>
+      <div class="cake-stage">
+        <div class="cake-aura" aria-hidden="true"></div>
+        <div class="cake" id="cakeEl">
+          <div class="candles">
+            <button class="candle" aria-label="Hipan ang kandila 1"><span class="flame"></span><span class="smoke"></span></button>
+            <button class="candle" aria-label="Hipan ang kandila 2"><span class="flame"></span><span class="smoke"></span></button>
+            <button class="candle" aria-label="Hipan ang kandila 3"><span class="flame"></span><span class="smoke"></span></button>
+          </div>
+          <div class="tier top"><span class="frosting"></span></div>
+          <div class="tier bottom"><span class="frosting"></span></div>
+          <div class="plate"></div>
+        </div>
+      </div>
+      <p class="cake-msg" id="cakeMsg" aria-live="polite"></p>
+      <button class="soft-btn" id="relightBtn" hidden>Sindihan muli 🕯️</button>
+    </section>
+
+    <!-- ========== TESOROS (galería) ========== -->
+    <section class="treasures reveal" id="treasures">
+      <h2 class="section-title"><span class="gt">Ang Aking mga Kayamanan</span></h2>
+      <p class="section-sub">Pindutin ang bawat kayamanan para buksan ito 💎</p>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- ========== CARTA ========== -->
+    <section class="letter-section reveal" id="letter">
+      <h2 class="section-title"><span class="gt">May sulat ka</span> <span class="emo">💌</span></h2>
+      <p class="section-sub" id="letterHint">Pindutin ang selyo para buksan</p>
+      <div class="envelope-wrap">
+        <button class="envelope" id="envelope" aria-label="Buksan ang sulat">
+          <span class="env-back"></span>
+          <span class="env-paper"><span></span><span></span><span></span></span>
+          <span class="env-front"></span>
+          <span class="env-flap"></span>
+          <span class="env-seal">S</span>
+        </button>
+      </div>
+
+      <article class="letter" id="letterPaper" hidden>
+        <div class="letter-ornament" aria-hidden="true">❦</div>
+        <p class="l greet">Hello, mahal ko,</p>
+        <p class="l">Araw-araw, sinisikap kong matutunan nang kaunti pa ang wika ng napakaganda kong babae.</p>
+        <p class="l">Gusto kong sabihin sa iyo na mahal kita, at ipinagmamalaki kita dahil isa kang kahanga-hangang tao.</p>
+        <p class="l">Ngayong kaarawan mo, sana ay maalala mo kung gaano kalaki ang pagmamahal ko sa iyo, pati na rin ang pagmamahal sa iyo ng lahat ng nakapaligid sa iyo. Sana ay maging masayang-masaya ka sa araw mo.</p>
+        <p class="l">At sana, unti-unti tayong sabay na lumago bilang magkasintahan, para mamuhay ng isang buhay na puno ng pakikipagsapalaran.</p>
+        <p class="l strong">Mahal kita. Buong puso kong hinihiling na makita na kita sa lalong madaling panahon.</p>
+        <p class="l ps" lang="en">i love you, te amo amor, i hope today on your day can you have too much hugs and love, that i hope i could give you some day.</p>
+        <div class="l letter-heart" aria-hidden="true">♡</div>
+      </article>
+    </section>
+
+    <!-- ========== FINAL ========== -->
+    <footer class="finale reveal">
+      <h2 class="finale-title">Mahal kita, Schanel</h2>
+      <p class="finale-sub">ngayon, bukas, at magpakailanman.</p>
+      <button class="soft-btn" id="confettiBtn">Isa pang confetti! 🎉</button>
+    </footer>
+  </main>
+
+  <!-- Visor de fotos -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lbClose" aria-label="Isara">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Nakaraan">‹</button>
+    <figure class="lb-figure">
+      <div class="lb-frame"><img id="lbImg" alt=""></div>
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Susunod">›</button>
+  </div>
+
+  <script src="music.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
